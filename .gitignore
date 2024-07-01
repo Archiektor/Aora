@@ -1,12 +1,16 @@
-# Learn more https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
+# Learn more at https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
 
 # dependencies
 node_modules/
 
 # Expo
 .expo/
+.expo-shared/
 dist/
 web-build/
+
+# IDEs and editors
+.idea/
 
 # Native
 *.orig.*
@@ -17,12 +21,13 @@ web-build/
 *.mobileprovision
 
 # Metro
-.metro-health-check*
+.metro/
+metro.config.js
 
 # debug
-npm-debug.*
-yarn-debug.*
-yarn-error.*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
 # macOS
 .DS_Store
