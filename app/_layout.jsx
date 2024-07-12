@@ -1,6 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {Slot, Stack} from 'expo-router';
+import {Stack} from 'expo-router';
 
 // In the context of the expo-router, the Slot component is used as a placeholder for nested routes.
 // The Slot component acts similarly to the Outlet component in other routing libraries like
@@ -24,19 +23,19 @@ const RootLayout = () => {
 
 export default RootLayout
 
-const styles = StyleSheet.create({
-    container: {
-        flexDirection: 'column',
-        justifyContent: 'space-around',
-        height: '100%',
-        paddingVertical: 22,
-    },
-    header: {
-        backgroundColor: '#a8e1da',
-        minHeight: 45
-    },
-    footer: {
-        backgroundColor: '#b097c5',
-        minHeight: 45
-    }
-})
+// const styles = StyleSheet.create({
+//     container: {
+//         flexDirection: 'column',
+//         justifyContent: 'space-around',
+//         height: '100%',
+//         paddingVertical: 22,
+//     },
+//     header: {
+//         backgroundColor: '#a8e1da',
+//         minHeight: 45
+//     },
+//     footer: {
+//         backgroundColor: '#b097c5',
+//         minHeight: 45
+//     }
+// })
