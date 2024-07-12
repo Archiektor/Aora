@@ -1,12 +1,14 @@
 import {StatusBar, StyleSheet, Text, View} from 'react-native';
+import {Link} from 'expo-router';
 
 export default function App() {
     return (
         <View style={styles.container}>
-            <Text style={styles.text}>Aora!</Text>
+            <Text>Aora !</Text>
             <StatusBar style="auto"/>
+            <Link href={'/profile'} style={{color: 'blue'}}>Go to profile</Link>
         </View>
-    )
+    );
 }
 
 const styles = StyleSheet.create({
@@ -14,10 +16,6 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fff',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
-    text: {
-        fontSize: 32,
-        fontWeight: 'bold',
-    }
 })
