@@ -2,7 +2,8 @@ import React, {useEffect} from 'react';
 import {SplashScreen, Stack} from 'expo-router';
 import {useFonts} from 'expo-font';
 
-SplashScreen.preventAutoHideAsync();
+SplashScreen.preventAutoHideAsync(); // Allow to control when the splash screen is hidden,
+// typically after fonts are loaded or other asynchronous tasks are completed.
 
 // In the context of the expo-router, the Slot component is used as a placeholder for nested routes.
 // The Slot component acts similarly to the Outlet component in other routing libraries like
@@ -34,6 +35,7 @@ const RootLayout = () => {
     }
 
     return (
+        //This component acts as the navigator for the app. It defines the navigation structure and the screens that are part of the navigation stack.
         <Stack>
             <Stack.Screen name={'index'} options={{headerShown: false}}/>
         </Stack>
