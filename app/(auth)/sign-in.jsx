@@ -1,11 +1,12 @@
 import {useState} from 'react';
-import {Image, ScrollView, Text, View} from 'react-native';
+import {Alert, Image, ScrollView, Text, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import CustomButton from '../../components/CustomButton';
-import {router} from 'expo-router';
+import {Link, router} from 'expo-router';
 
 import {images} from '../../constants'
 import FormField from '../../components/FormField';
+import {signIn} from '../../lib/appwrite';
 
 const SignIn = () => {
     const [form, setForm] = useState({
@@ -13,9 +14,35 @@ const SignIn = () => {
         password: ''
     })
 
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const submitForm = () => {
-        alert('Try to submit form');
+
+    const submitSignInForm = async () => {
+        //alert('Try to submit form');
+        if (!form.email || !form.password) {
+            Alert.alert('Error', 'Please fill all fields');
+        }
+        setIsSubmitting(true);
+
+        try {
+            await signIn(form.email, form.password);
+
+            //set it to global state ...
+
+            router.replace('/home');
+        } catch (e) {
+            Alert.alert('Error', e.message());
+        } finally {
+            setIsSubmitting(false);
+            setForm(
+                {
+                    email: '',
+                    password: ''
+                }
+            )
+        }
+
+
     }
 
     return (
@@ -27,17 +54,17 @@ const SignIn = () => {
                     </View>
                     <View className={'w-full'}>
                         <Text className={'text-2xl text-white mt-5 font-psemibold'}>Sign In</Text>
-                        <FormField title={'Email'} value={form.email} placeholder={'email'} handleChangeText={(e) => setForm({...form, email: e})} otherStyles={'mt-3'}
+                        <FormField title={'Email'} value={form.email} placeholder={'Email'} handleChangeText={(e) => setForm({...form, email: e})} otherStyles={'mt-3'}
                                    keyboardType={'email-address'}/>
-                        <FormField title={'Password'} value={form.password} placeholder={'password'} handleChangeText={(e) => setForm({...form, password: e})}
+                        <FormField title={'Password'} value={form.password} placeholder={'Password'} handleChangeText={(e) => setForm({...form, password: e})}
                                    otherStyles={'mt-3'}/>
                         <Text className={`text-[14px] text-gray-100 leading-[20.3px] text-right mt-3`}>Forgot password</Text>
-                        <CustomButton handlePress={submitForm} containerStyles={'bg-secondary mt-7 align-center justify-center w-full rounded-2xl'}
-                                      title={'Log In'}/>
+                        <CustomButton handlePress={submitSignInForm} containerStyles={'bg-secondary mt-7 align-center justify-center w-full rounded-2xl'}
+                                      title={'Log In'} isLoading={isSubmitting}/>
                     </View>
-                    <View className="w-full justify-center items-center">
-                        <Text className={`font-pregular text-[14px] mt-2 leading-[20.3px] text-center text-white`}>Don’t have an account?<Text
-                            className={'text-secondary'} onPress={() => router.push('/sign-up')}> Signup</Text></Text>
+                    <View className="w-full justify-center items-center pt-5 flex-row gap-2">
+                        <Text className={`font-pregular text-[14px] mt-2 leading-[20.3px] text-center text-gray-100`}>Don’t have an account?<Link
+                            className={'text-secondary font-psemibold text-[14px]'} href={'/sign-up'}> Signup</Link></Text>
                     </View>
                 </View>
             </ScrollView>

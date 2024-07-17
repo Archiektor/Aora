@@ -38,6 +38,9 @@ const RootLayout = () => {
         //This component acts as the navigator for the app. It defines the navigation structure and the screens that are part of the navigation stack.
         <Stack>
             <Stack.Screen name={'index'} options={{headerShown: false}}/>
+            <Stack.Screen name={'(auth)'} options={{headerShown: false}}/>
+            <Stack.Screen name={'(tabs)'} options={{headerShown: false}}/>
+            {/*<Stack.Screen name={'/search/[query]'} options={{headerShown: false}}/>*/}
         </Stack>
     )
 
